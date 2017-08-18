@@ -1,5 +1,5 @@
 import Template from './index.vue';
-
+// https://nakupanda.github.io/bootstrap3-dialog/
 let merge = (src, target) => {
     let o = {};
     for(let key in src) {

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './components/app.vue';
-import Modal from './components/Alert/index.js';
+import Modal from './components/Dialog/index.js';
 
 Vue.use(Modal);
 

@@ -29,13 +29,14 @@
             // this.$Dialog.alert('message!!!', function(){
             //     alert('fuck');
             // });
-            this.$Dialog.confirm('message!!!!', function(result){
-                if(result) {
-                    alert('确定');
-                } else {
-                    alert('取消');
-                }
-            });
+            // this.$Dialog.confirm('message!!!!', function(result){
+            //     if(result) {
+            //         alert('确定');
+            //     } else {
+            //         alert('取消'); 
+            //     }
+            // });
+            this.$Toast('数据请求出错, 请稍后重试!');
         },
         data() {
             return {

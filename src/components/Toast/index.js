@@ -28,13 +28,17 @@ let instance;
 
 const globalOptions = {
     show: true,
-    cssClass: '',
+    cssClass: {
+        'is-toastShow': true, 
+        'is-toastHide': false
+    },
     style: {},
     duration: 3000
 }
 
 const Toast = (message, options = {}) => {
-    // alert(message);
+
+    options.cssClass && (globalOptions.cssClass[options.cssClass] = true) && (options.cssClass = globalOptions.cssClass);
     options = merge(globalOptions, options);
     for(let key in options) {
         if(options.hasOwnProperty(key)) {
@@ -45,8 +49,14 @@ const Toast = (message, options = {}) => {
     instance.$data.message = message;
     document.body.appendChild(instance.$mount().$el);
     setTimeout(() => {
-        instance.$data.show = false;
+        Dismiss();    
     }, options.duration);
+}
+
+const Dismiss = () => {
+    instance.$data.show = false;
+    instance.$data.cssClass['is-toastShow'] = false;
+    instance.$data.cssClass['is-toastHide'] = true;
 }
 
 

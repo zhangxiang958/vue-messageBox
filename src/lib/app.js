@@ -10685,6 +10685,8 @@
 	});
 	exports.default = {
 	    mounted: function mounted() {
+	        var _this = this;
+
 	        // this.$Dialog({
 	        //     closable: false,
 	        //     // type: 'info',
@@ -10725,12 +10727,30 @@
 	                background: 'red'
 	            }
 	        });
-	        this.$Toast('数据请求出错2, 请稍后重试!', {
-	            cssClass: '123123 234234',
-	            style: {
-	                background: 'red'
-	            }
-	        });
+	        setTimeout(function () {
+	            _this.$Toast('数据请求出错2, 请稍后重试!', {
+	                cssClass: '123123 234234',
+	                style: {
+	                    background: 'red'
+	                }
+	            });
+	        }, 2000);
+	        setTimeout(function () {
+	            _this.$Toast('数据请求出错3, 请稍后重试!', {
+	                cssClass: '123123 234234',
+	                style: {
+	                    background: 'red'
+	                }
+	            });
+	        }, 4000);
+	        setTimeout(function () {
+	            _this.$Toast('数据请求出错4, 请稍后重试!', {
+	                cssClass: '123123 234234',
+	                style: {
+	                    background: 'red'
+	                }
+	            });
+	        }, 6000);
 	    },
 	    data: function data() {
 	        return {};
@@ -12549,17 +12569,24 @@
 	        }
 	    }
 	    console.log('toast', options);
-	    instance.$data.message = message;
+	    instance.$data.messages.push(message);
+	    var idx = instance.$data.messages.length - 1;
 	    document.body.appendChild(instance.$mount().$el);
 	    setTimeout(function () {
-	        Dismiss();
+	        Dismiss(idx);
+	        instance.$data.messages.shift();
 	    }, options.duration);
 	};
 
-	var Dismiss = function Dismiss() {
-	    instance.$data.show = false;
-	    instance.$data.cssClass['is-toastShow'] = false;
-	    instance.$data.cssClass['is-toastHide'] = true;
+	var Dismiss = function Dismiss(idx) {
+	    // instance.$data.show = false;
+	    // instance.$data.cssClass['is-toastShow'] = false;
+	    // instance.$data.cssClass['is-toastHide'] = true;
+	    // instance.$data.messages.shift();
+	    var className = instance.$mount().$el.children[idx].className.replace(/\bis-toastShow\b/g, 'is-toastHide');
+	    console.log('children', className);
+	    instance.$mount().$el.children[idx].className = className;
+	    console.log('data', instance.$data.messages);
 	};
 
 	exports.default = {
@@ -12649,7 +12676,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.toast[data-v-44159bf3] {\n    position: fixed;\n    bottom: 15%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    z-index: 999;\n}\n.toastMsg[data-v-44159bf3] {\n    padding: 0 16px;\n    width: auto;\n    height: 32px;\n    line-height: 32px;\n    border-radius: 20px;\n    background: rgba(0, 0, 0, 0.8);\n    font-size: 14px;\n    color: #fff;\n    white-space: nowrap;\n}\n.toastMsg.is-toastHide[data-v-44159bf3], .toastMsg.is-toastShow[data-v-44159bf3] {\n    -webkit-animation-delay: 0s;\n    animation-delay: 0s;\n    -webkit-animation-duration: .4s;\n    animation-duration: .4s\n}\n.toastMsg.is-toastShow[data-v-44159bf3] {\n    -webkit-animation-name: toastshow-data-v-44159bf3;\n    animation-name: toastshow-data-v-44159bf3;\n    -webkit-animation-timing-function: cubic-bezier(0, .33, .2, 1);\n    animation-timing-function: cubic-bezier(0, .33, .2, 1);\n    -webkit-animation-fill-mode: forwards;\n    animation-fill-mode: forwards;\n}\n.toastMsg.is-toastHide[data-v-44159bf3] {\n    -webkit-animation-name: toasthide-data-v-44159bf3;\n    animation-name: toasthide-data-v-44159bf3;\n    -webkit-animation-timing-function: cubic-bezier(0, .33, .2, 1);\n    animation-timing-function: cubic-bezier(0, .33, .2, 1);\n    -webkit-animation-fill-mode: forwards;\n    animation-fill-mode: forwards;\n}\n@-webkit-keyframes toastshow {\n0% {\n        opacity: 0;\n        -webkit-transform: scale(1.185);\n        transform: scale(1.185);\n}\nto {\n        opacity: 1;\n        -webkit-transform: scale(1);\n        transform: scale(1);\n}\n}\n@keyframes toastshow-data-v-44159bf3 {\n0% {\n        opacity: 0;\n        -webkit-transform: scale(1.185);\n        transform: scale(1.185);\n}\nto {\n        opacity: 1;\n        -webkit-transform: scale(1);\n        transform: scale(1);\n}\n}\n@-webkit-keyframes toasthide {\n0% {\n        opacity: 1;\n        -webkit-transform: scale(1);\n        transform: scale(1);\n}\nto {\n        opacity: 0;\n        -webkit-transform: scale(.815);\n        transform: scale(.815);\n}\n}\n@keyframes toasthide-data-v-44159bf3 {\n0% {\n        opacity: 1;\n        -webkit-transform: scale(1);\n        transform: scale(1);\n}\nto {\n        opacity: 0;\n        -webkit-transform: scale(.815);\n        transform: scale(.815);\n}\n}\n", ""]);
+	exports.push([module.id, "\n.toast[data-v-44159bf3] {\n    position: fixed;\n    bottom: 15%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    z-index: 999;\n}\n.toastMsg[data-v-44159bf3] {\n    margin-bottom: 16px;\n    padding: 0 16px;\n    width: auto;\n    height: 32px;\n    line-height: 32px;\n    border-radius: 20px;\n    background: rgba(0, 0, 0, 0.8);\n    font-size: 14px;\n    color: #fff;\n    white-space: nowrap;\n    -webkit-transition: all 0.3s ease;\n    -moz-transition: all 0.3s ease;\n    transition: all 0.3s ease;\n}\n.toastMsg.is-toastHide[data-v-44159bf3], .toastMsg.is-toastShow[data-v-44159bf3] {\n    -webkit-animation-delay: 0s;\n    animation-delay: 0s;\n    -webkit-animation-duration: .4s;\n    animation-duration: .4s;\n}\n.toastMsg.is-toastShow[data-v-44159bf3] {\n    -webkit-animation-name: toastshow-data-v-44159bf3;\n    animation-name: toastshow-data-v-44159bf3;\n    -webkit-animation-timing-function: cubic-bezier(0, .33, .2, 1);\n    animation-timing-function: cubic-bezier(0, .33, .2, 1);\n    -webkit-animation-fill-mode: forwards;\n    animation-fill-mode: forwards;\n}\n.toastMsg.is-toastHide[data-v-44159bf3] {\n    -webkit-animation-name: toasthide-data-v-44159bf3;\n    animation-name: toasthide-data-v-44159bf3;\n    -webkit-animation-timing-function: cubic-bezier(0, .33, .2, 1);\n    animation-timing-function: cubic-bezier(0, .33, .2, 1);\n    -webkit-animation-fill-mode: forwards;\n    animation-fill-mode: forwards;\n}\n@-webkit-keyframes toastshow {\n0% {\n        opacity: 0;\n        -webkit-transform: scale(1.185);\n        transform: scale(1.185);\n}\nto {\n        opacity: 1;\n        -webkit-transform: scale(1);\n        transform: scale(1);\n}\n}\n@keyframes toastshow-data-v-44159bf3 {\n0% {\n        opacity: 0;\n        -webkit-transform: scale(1.185);\n        transform: scale(1.185);\n}\nto {\n        opacity: 1;\n        -webkit-transform: scale(1);\n        transform: scale(1);\n}\n}\n@-webkit-keyframes toasthide {\n0% {\n        opacity: 1;\n        -webkit-transform: scale(1);\n        transform: scale(1);\n}\nto {\n        opacity: 0;\n        -webkit-transform: scale(.815);\n        transform: scale(.815);\n}\n}\n@keyframes toasthide-data-v-44159bf3 {\n0% {\n        opacity: 1;\n        -webkit-transform: scale(1);\n        transform: scale(1);\n}\nto {\n        opacity: 0;\n        -webkit-transform: scale(.815);\n        transform: scale(.815);\n}\n}\n", ""]);
 
 	// exports
 
@@ -12667,7 +12694,7 @@
 	    data: function data() {
 	        return {
 	            show: false,
-	            message: '',
+	            messages: [],
 	            cssClass: {
 	                'is-toastShow': this.show,
 	                'is-toastHide': !this.show
@@ -12686,11 +12713,13 @@
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "toast"
-	  }, [_c('div', {
-	    staticClass: "toastMsg",
-	    class: _vm.cssClass,
-	    style: (_vm.style)
-	  }, [_vm._v("\n        " + _vm._s(_vm.message) + "\n    ")])])
+	  }, _vm._l((_vm.messages), function(message) {
+	    return _c('div', {
+	      staticClass: "toastMsg",
+	      class: _vm.cssClass,
+	      style: (_vm.style)
+	    }, [_vm._v("\n        " + _vm._s(message) + "\n    ")])
+	  }))
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {

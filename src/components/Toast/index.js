@@ -46,17 +46,24 @@ const Toast = (message, options = {}) => {
         }
     }
     console.log('toast', options);
-    instance.$data.message = message;
+    instance.$data.messages.push(message);
+    let idx = instance.$data.messages.length - 1;
     document.body.appendChild(instance.$mount().$el);
     setTimeout(() => {
-        Dismiss();    
+        Dismiss(idx);   
+        instance.$data.messages.shift();
     }, options.duration);
 }
 
-const Dismiss = () => {
-    instance.$data.show = false;
-    instance.$data.cssClass['is-toastShow'] = false;
-    instance.$data.cssClass['is-toastHide'] = true;
+const Dismiss = (idx) => {
+    // instance.$data.show = false;
+    // instance.$data.cssClass['is-toastShow'] = false;
+    // instance.$data.cssClass['is-toastHide'] = true;
+    // instance.$data.messages.shift();
+    let className = instance.$mount().$el.children[idx].className.replace(/\bis-toastShow\b/g, 'is-toastHide');
+    console.log('children', className);
+    instance.$mount().$el.children[idx].className = className;
+    console.log('data', instance.$data.messages);
 }
 
 

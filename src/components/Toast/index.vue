@@ -3,7 +3,7 @@
         data() {
             return {
                 show: false,
-                message: '',
+                messages: [],
                 cssClass: {
                     'is-toastShow': this.show,
                     'is-toastHide': !this.show
@@ -20,6 +20,7 @@
         <div class="toastMsg" 
             :class="cssClass"
             :style="style"
+            v-for="message in messages"
         >
             {{ message }}
         </div>
@@ -35,6 +36,7 @@
         z-index: 999;
     }
     .toastMsg {
+        margin-bottom: 16px;
         padding: 0 16px;
         width: auto;
         height: 32px;
@@ -44,12 +46,15 @@
         font-size: 14px;
         color: #fff;
         white-space: nowrap;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        transition: all 0.3s ease;
     }
     .toastMsg.is-toastHide, .toastMsg.is-toastShow {
         -webkit-animation-delay: 0s;
         animation-delay: 0s;
         -webkit-animation-duration: .4s;
-        animation-duration: .4s
+        animation-duration: .4s;
     }
 
     .toastMsg.is-toastShow {

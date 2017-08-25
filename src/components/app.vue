@@ -2,32 +2,39 @@
 
     export default {
         mounted() {
-            // this.$Dialog({
-            //     closable: false,
-            //     // type: 'info',
-            //     title: {
-            //         content: '1233333333333333333333333'
-            //     },
-            //     message: {
-            //         content: '<div>123</div>'
-            //     },
-            //     buttons: [{
-            //         label: 'submit',
-            //         cssClass: '',
-            //         style: {},
-            //         action: function(){
+            this.$Dialog({
+                closable: false,
+                // type: 'info',
+                title: {
+                    content: '1233333333333333333333333'
+                },
+                message: {
+                    content: '<div>123</div>'
+                },
+                buttons: [{
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
 
-            //         }
-            //     }],
-            //     closeBtn: {
+                    }
+                }, {
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
 
-            //     },
-            //     messageBox: {
-            //         // cssClass: 'test'
-            //     }
-            // });
+                    }
+                }],
+                closeBtn: {
+
+                },
+                messageBox: {
+                    // cssClass: 'test'
+                }
+            });
             // this.$Dialog.alert('message!!!', function(){
-            //     alert('fuck');
+                
             // });
             // this.$Dialog.confirm('message!!!!', function(result){
             //     if(result) {
@@ -66,10 +73,10 @@
             //         }
             //     });
             // }, 6000);  
-            this.$Loading();
-            setTimeout(() => {
-                this.$Loading.Dismiss();
-            }, 5000);
+            // this.$Loading();
+            // setTimeout(() => {
+            //     this.$Loading.Dismiss();
+            // }, 5000);
         },
         data() {
             return {

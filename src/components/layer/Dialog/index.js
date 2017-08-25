@@ -21,6 +21,10 @@ let globalOptions = {
     messageBox: {
         cssClass: '',
         style: {}
+    },
+    msgFooter: {
+        cssClass: '',
+        style: {}
     }
 };
 
@@ -43,7 +47,7 @@ const Dialog = (config = {}) => {
 }
 
 const Alert = (message, callback) => {
-    let alertConfig = merge(globalOptions, {
+    let alertConfig = {
         type: 'info',
         message: {
             content: message
@@ -51,19 +55,30 @@ const Alert = (message, callback) => {
         buttons: [{
             label: '确定',
             style: {
-                textAlign: 'center'
+                margin: '0',
+                width: '100%',
+                boxSizing: 'border-box',
+                border: 'none'
             },
             action: function(){
                 Dismiss();
                 callback && callback();
             }
-        }]
+        }],
+        msgFooter: {
+            style: {
+                padding: '0'
+            }
+        }
+    };
+    Dialog({
+        ...globalOptions,
+        ...alertConfig
     });
-    Dialog(alertConfig);
 }
 
 const Confirm = function(message, callback){
-    let confirmConfig = merge(globalOptions, {
+    let confirmConfig = {
         type: 'info',
         message: {
             content: message
@@ -71,11 +86,14 @@ const Confirm = function(message, callback){
         buttons: [{
             label: '确定',
             style: {
-                boxSizing: 'border-box',
-                textAlign: 'center',
+                margin: '0',
+                padding: '3%',
                 width: '50%',
+                height: '40%',
+                boxSizing: 'border-box',
+                border: 'none',
                 borderRight: '1px solid #f8f8f8',
-                lineHeight: '40px'
+                lineHeight: '2'
             },
             action: function(){
                 Dismiss();
@@ -84,18 +102,30 @@ const Confirm = function(message, callback){
         }, {
             label: '取消',
             style: {
-                boxSizing: 'border-box',
-                textAlign: 'center',
+                margin: '0',
+                padding: '3%',
                 width: '50%',
-                lineHeight: '40px'
+                height: '40%',
+                boxSizing: 'border-box',
+                border: 'none',
+                lineHeight: '2'
             },
             action: function(){
                 Dismiss();
                 callback && callback(false);
             }
-        }]
+        }],
+        msgFooter: {
+            style: {
+                padding: '0'
+            }
+        }
+    };
+    
+    Dialog({
+        ...globalOptions,
+        ...confirmConfig
     });
-    Dialog(confirmConfig);
 }
 
 const Dismiss = () => {

@@ -23,6 +23,10 @@
                 messageBox: {
                     cssClass: '',
                     style: {}
+                },
+                msgFooter: {
+                    cssClass: '',
+                    style: {}
                 }
             }
         },
@@ -62,7 +66,10 @@
                         @click="dismiss($event)"></div>
                 </div>
                 <div class="msg" v-html="message.content" :style="message.style" :class="message.cssClass"></div>
-                <div class="msgFooter">
+                <div class="msgFooter"
+                    :class="msgFooter.cssClass"
+                    :style="msgFooter.style"
+                >
                     <div class="footerBtn"
                     v-for="item in buttons"
                     :class="item.cssClass"
@@ -133,13 +140,41 @@
         overflow: hidden;
     }
     .msgFooter {
+        position: relative;
+        box-sizing: border-box;
+        padding: 2%;
         border-top: 1px solid #e8e8e8;
         background: #fff;
+        text-align: right;
         overflow: hidden;
     }
     .footerBtn {
-        float: left;
-        border-collapse: collapse;
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 0;
+        font-weight: 500;
+        text-align: center;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        line-height: 1.15;
+        padding: 0 15px;
+        font-size: 12px;
+        border-radius: 4px;
+        height: 28px;
+        line-height: 28px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
+        transition: all .3s cubic-bezier(.645,.045,.355,1);
+        position: relative;
+        color: rgba(0, 0, 0, .65);
+        background-color: #fff;
+        border-color: #d9d9d9;
     }
     .mask {
         position: absolute;

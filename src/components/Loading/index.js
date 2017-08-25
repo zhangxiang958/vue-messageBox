@@ -5,14 +5,14 @@ let instance;
 const globalOptions = {
     show: true,
     cssClass: {
-        'is-toastShow': true, 
-        'is-toastHide': false
+        'is-loadingShow': true, 
+        'is-loadingHide': false
     },
     style: {},
     duration: 3000
 }
 
-const Toast = (message, options = {}) => {
+const Loading = (message, options = {}) => {
 
     options.cssClass && (globalOptions.cssClass[options.cssClass] = true) && (options.cssClass = globalOptions.cssClass);
     console.log({  ...globalOptions, ...options });
@@ -25,17 +25,14 @@ const Toast = (message, options = {}) => {
             instance.$data[key] = options[key];
         }
     }
-    instance.$data.message = message;
+    // instance.$data.message = message;
     document.body.appendChild(instance.$mount().$el);
-    setTimeout(() => {
-        Dismiss();
-    }, options.duration);
 }
 
 const Dismiss = () => {
     instance.$data.show = false;
-    instance.$data.cssClass['is-toastShow'] = false;
-    instance.$data.cssClass['is-toastHide'] = true;
+    instance.$data.cssClass['is-loadingShow'] = false;
+    instance.$data.cssClass['is-loadingHide'] = true;
 }
 
 
@@ -43,6 +40,7 @@ export default {
     install(Vue) {
         let Tpl = Vue.extend(Template);
         instance = new Tpl();
-        Vue.prototype.$Toast = Toast;
+        Vue.prototype.$Loading = Loading;
+        Vue.prototype.$Loading.Dismiss = Dismiss;
     }
 }

@@ -3,7 +3,7 @@
         data() {
             return {
                 show: false,
-                messages: [],
+                message: '',
                 cssClass: {
                     'is-toastShow': this.show,
                     'is-toastHide': !this.show
@@ -20,7 +20,6 @@
         <div class="toastMsg" 
             :class="cssClass"
             :style="style"
-            v-for="message in messages"
         >
             {{ message }}
         </div>

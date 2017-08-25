@@ -45,7 +45,7 @@ gulp.task('bundle', function(){
         					loader: 'babel',
         					exclude: /node_modules/,
         					query: {
-				                presets: ['es2015']
+				                presets: ['es2015', 'stage-0', 'es2016']
 				            }
       					},{
 							test: /\.(png|jpg)$/,

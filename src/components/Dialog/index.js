@@ -1,29 +1,5 @@
 import Template from './index.vue';
 
-const merge = (src, target) => {
-    let o = {};
-    for(let key in src) {
-        if(src.hasOwnProperty(key)) {
-            if(typeof src[key] === 'object') {
-                o[key] = merge({}, src[key]);
-            } else {
-                o[key] = src[key];
-            }
-        }
-    }
-
-    for(let key in target) {
-        if(target.hasOwnProperty(key)) {
-            if(typeof target[key] === 'object') {
-                o[key] = merge({}, target[key]);
-            } else {
-                o[key] = target[key];
-            }
-        }
-    }
-    return o;
-};
-
 let globalOptions = {
     show: false,
     closable: true,
@@ -51,7 +27,10 @@ let globalOptions = {
 let instance;
 
 const Dialog = (config = {}) => {
-    config = merge(globalOptions, config);
+    config = {
+        ...globalOptions,
+        ...config
+    };
     for(let key in config) {
         if(config.hasOwnProperty(key)) {
             instance.$data[key] = config[key];

@@ -36,36 +36,40 @@
             //         alert('取消'); 
             //     }
             // });
-            this.$Toast('数据请求出错, 请稍后重试!', {
-                cssClass: '123123 234234',
-                style: {
-                    background: 'red'
-                }
-            });
+            // this.$Toast('数据请求出错, 请稍后重试!', {
+            //     cssClass: '123123 234234',
+            //     style: {
+            //         background: 'red'
+            //     }
+            // });
+            // setTimeout(() => {
+            //     this.$Toast('数据请求出错2, 请稍后重试!', {
+            //         cssClass: '123123 234234',
+            //         style: {
+            //             // background: 'red'
+            //         }
+            //     });
+            // }, 2000);
+            // setTimeout(() => {
+            //     this.$Toast('数据请求出错3, 请稍后重试!', {
+            //         cssClass: '123123 234234',
+            //         style: {
+            //             // background: 'red'
+            //         }
+            //     });
+            // }, 4000);
+            // setTimeout(() => {
+            //     this.$Toast('数据请求出错4, 请稍后重试!', {
+            //         cssClass: '123123 234234',
+            //         style: {
+            //             // background: 'red'
+            //         }
+            //     });
+            // }, 6000);  
+            this.$Loading();
             setTimeout(() => {
-                this.$Toast('数据请求出错2, 请稍后重试!', {
-                    cssClass: '123123 234234',
-                    style: {
-                        background: 'red'
-                    }
-                });
-            }, 2000);
-            setTimeout(() => {
-                this.$Toast('数据请求出错3, 请稍后重试!', {
-                    cssClass: '123123 234234',
-                    style: {
-                        background: 'red'
-                    }
-                });
-            }, 4000);
-            setTimeout(() => {
-                this.$Toast('数据请求出错4, 请稍后重试!', {
-                    cssClass: '123123 234234',
-                    style: {
-                        background: 'red'
-                    }
-                });
-            }, 6000);  
+                this.$Loading.Dismiss();
+            }, 5000);
         },
         data() {
             return {

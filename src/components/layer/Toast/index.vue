@@ -2,13 +2,13 @@
     export default {
         data() {
             return {
-                show: false,
-                message: '',
-                cssClass: {
+                // show: false,
+                messages: [],
+/*                cssClass: {
                     'is-toastShow': this.show,
                     'is-toastHide': !this.show
                 },
-                style: {}
+                style: {}*/
             }
         },
         methods: {
@@ -17,12 +17,20 @@
 </script>
 <template>
     <div class="toast">
-        <div class="toastMsg" 
-            :class="cssClass"
-            :style="style"
+        <transition-group 
+            tag='div'
+            name="toastShow"
         >
-            {{ message }}
-        </div>
+            <div class="toastMsg" 
+                v-for="message in messages"
+                :key="message.id"
+                v-if="message.show"
+                :class="message.cssClass"
+                :style="message.style"
+            >
+                {{ message.content }}
+            </div>
+        </transition-group>
     </div>
 </template>
 
@@ -31,11 +39,11 @@
         position: fixed;
         bottom: 15%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         z-index: 999;
     }
     .toastMsg {
-        margin-bottom: 16px;
+        margin-bottom: 5px;
         padding: 0 16px;
         width: auto;
         height: 32px;
@@ -45,15 +53,37 @@
         font-size: 14px;
         color: #fff;
         white-space: nowrap;
-        -webkit-transition: all 0.3s ease;
-        -moz-transition: all 0.3s ease;
-        transition: all 0.3s ease;
     }
     .toastMsg.is-toastHide, .toastMsg.is-toastShow {
         -webkit-animation-delay: 0s;
         animation-delay: 0s;
         -webkit-animation-duration: .4s;
         animation-duration: .4s;
+    }
+
+    .toastShow-enter {
+        transform: translateY(100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .toastShow-enter-active {
+        opacity: 0;
+        transition: all 0.3s ease-out;
+    }
+
+    .toastShow-enter-to {
+        opacity: 1;
+    }
+
+    .toastShow-leave-active {
+        opacity: 1;
+        transition: all 0.3s ease-out;
+    }
+
+    .toastShow-leave-to {
+        transform: translateY(-100%);
+        opacity: 0;
     }
 
     .toastMsg.is-toastShow {

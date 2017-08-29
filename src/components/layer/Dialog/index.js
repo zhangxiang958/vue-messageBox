@@ -41,7 +41,7 @@ const Dialog = (config = {}) => {
         }
     }
     instance.$data.show = true;
-    console.log('msg', instance.$data);
+    // console.log('msg', instance.$data);
     document.body.style.overflow = 'hidden';
     document.body.appendChild(instance.$mount().$el);
 }
@@ -57,6 +57,8 @@ const Alert = (message, callback) => {
             style: {
                 margin: '0',
                 width: '100%',
+                height: '40px',
+                lineHeight: '40px',
                 boxSizing: 'border-box',
                 border: 'none'
             },

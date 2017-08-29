@@ -98,7 +98,7 @@
         -webkit-user-select: none;
     }
     .msgBox.info .title {
-        background: #007aff;
+        background: rgb(32, 160, 255);
     }
     .msgBox.warning .title {
         background: #f0ad4e;

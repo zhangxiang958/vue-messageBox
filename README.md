@@ -1,124 +1,119 @@
-# vue-modal
+# vue-messageBox
 
 > this component is attend to offer a easy way to cue user with message but not by bowser's way.
 
 ## Requirements
 this project is base on ECMAScript 6, so maybe you need babel.
-## Why vue-modal
-
+## Why vue-messsageBox
+Because my project need a modal which only show some simple text, and the native modal on mobile is ugly and is not a custom component.
 ## Live Demo
 
 ## Installation
+```
+npm install --save vue-messageBox-addon
 
+or
+
+<script src="www.exampleCDN.com/vue-messageBox.min.js"></script>
+```
 ## Usage
-### Options of Dialog
-Here list options on Dialog
+### Options of messageBox
+Here list options on messageBox
 
 | Option | Description |
 | ----- | ----- |
 | closable | optional, the switch of dismiss way |
-| type | optional, String, the type of dialog, three type can be choose: 'info', 'warning', 'danger' |
 | title | optional, Object, the setting of title |
 | message | Object, the setting of message |
 | buttons | optional, Array, the item of Array is object, the object is the setting of footer button |
 | closeBtn | optional, Object, here you can set the closeBtn's outlook |
-| messageBox | optional, Object, here you can set the message's outlook |
-
+| msgBody | optional, Object, here you can set the message's outlook |
+| msgFooter | optional, Object, here you can set the message footer's outlook |
 ```
-closable: false,  //optional, true default, if you set false , click mask will not dismiss the dialog, you must click the closeBtn 
-type: 'info', //optional, accept String, default value is 'default', you can set one of 'info', 'warning', 'danger'.
-title: { // optional,
+closable: false,  // default true, if you set false , click mask will not dismiss the dialog, you must click the closeBtn 
+title: { 
     content: '1233333333333333333333333',  //String, title content 
     cssClass: '',  // className of title
-    style: {}  //style of title
+    style: {}  // style of title
 },
 message: {
     content: '<div>123</div>', //String or DOM String, message content
-    cssClass: '',  //className of message
-    style: {}  //style of message
+    cssClass: '',  // className of message
+    style: {}  // style of message
 },
-buttons: [{ // optional,
+buttons: [{
     label: 'submit',  //text label of footer button
-    cssClass: '',  //optional, className of the footer button
-    style: {},  //optional,style of the footer button
+    cssClass: '',  // className of the footer button
+    style: {},  // style of the footer button
     action: function(){
-      // optional, if wil fire when this button was clicked
+      // if wil fire when this button was clicked
     }
 }],
-closeBtn: { //optional
-    cssClass: '', // optional, className of close botton
-    style: {}  //optional style of close button
+closeBtn: {
+    cssClass: '', // className of close botton
+    style: {}  // style of close button
 },
-messageBox: { // optional
+msgBody: {
+    cssClass: '',  // className of messageBox
+    style: {}   // style of messageBox
+}
+msgFooter: {
     cssClass: '',  // className of messageBox
     style: {}   // style of messageBox
 }
 ```
 
-### Dialog
+### MessageBox
 ```
 //main.js
-Vue.use(Modal);
+import MsgBox from 'vue-messgaeBox-freedom';
+Vue.use(MsgBox);
 
 //app.vue
-this.$Dialog({
-     closable: false,
-     type: 'info',
-     title: {
-         content: '1233333333333333333333333',
-         cssClass: '',
-         style: {}
-     },
-     message: {
-         content: '<div>123</div>',
-         cssClass: '',
-         style: {}
-     },
-     buttons: [{
-         label: 'submit',
-         cssClass: '',
-         style: {},
-         action: function(){
+this.$Message({
+    closable: false,
+    title: {
+        content: '1233333333333333333333333'
+    },
+    message: {
+        content: '<div>123</div>'
+    },
+    buttons: [{
+        label: 'submit',
+        cssClass: '',
+        style: {},
+        action: function(){
 
-         }
-     }],
-     closeBtn: {
-         cssClass: '',
-         style: {}
-     },
-     messageBox: {
-         cssClass: 'test',
-         style: {}
-     }
- });
- // plugin offer two quick way to let you fire alert/confirm 
- this.$Dialog.alert('message');  //without callback
- //with callback
- this.$Dialog.alert('message', function(){  
-     alert('message');
- });
- //without callback
- this.$Dialog.confirm('message');
- //with callback
- this.$Dialog.confirm('message!!!!', function(result){
+        }
+    }, {
+        label: 'submit',
+        cssClass: '',
+        style: {},
+        action: () => {
+            this.$Message.dissmiss();
+        }
+    }],
+    closeBtn: {
+
+    },
+    msgBody: {
+        // cssClass: 'test'
+    }
+});
+this.$Message.alert('message!!!', function(){
+
+});
+this.$Message.confirm('message!!!!', function(result){
     if(result) {
-        //submit
         alert('确定');
     } else {
-        //cancel
-        alert('取消');
+        alert('取消'); 
     }
- });
+});
+
+// close the messageBox
+this.$Message.dissmiss();
 ```
-
-### Options of Toast
-
-### Toast
-
-### Options of Loading
-
-### Loading
-
 
 ## Licence
 MIT License

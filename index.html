@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>vue-messageBox</title>
+  <style>
+    .code {
+        background: #666;
+        color: #fff;
+    }
+  </style>
   <script>
         ! function(a, b) {
             function c() {
@@ -64,29 +70,173 @@
 </head>
 
 <body>
-  <div id="app">  
+ <div id="app">
+      <button @click="messageBox">message</button>
+      <pre class="code">
+          this.$Message({
+                closable: false,
+                // type: 'info',
+                title: {
+                    content: '1233333333333333333333333'
+                },
+                message: {
+                    content: '<div>123</div>'
+                },
+                buttons: [{
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }, {
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }],
+                closeBtn: {
+
+                },
+                msgBody: {
+                    cssClass: 'test'
+                }
+            });
+      </pre>
+      <button @click="messageBox">alert</button>
+      <pre class="code">
+          this.$Message({
+                closable: false,
+                // type: 'info',
+                title: {
+                    content: '1233333333333333333333333'
+                },
+                message: {
+                    content: '<div>123</div>'
+                },
+                buttons: [{
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }, {
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }],
+                closeBtn: {
+
+                },
+                msgBody: {
+                    // cssClass: 'test'
+                }
+            });
+      </pre>
+      <button @click="messageBox">confirm</button>
+      <pre class="code">
+          this.$Message({
+                closable: false,
+                // type: 'info',
+                title: {
+                    content: '1233333333333333333333333'
+                },
+                message: {
+                    content: '<div>123</div>'
+                },
+                buttons: [{
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }, {
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }],
+                closeBtn: {
+
+                },
+                msgBody: {
+                    // cssClass: 'test'
+                }
+            });
+      </pre>
   </div>
-  <!-- <script src="./node_modules/vue/dist/vue.js"></script> -->
+   <script src="./node_modules/vue/dist/vue.js"></script> 
    <script src="/dist/vue-messageBox.js"></script>   
 </body>
 <script>
-  // new Vue({
-  //   el: '#app',
-  //   data() {
-  //     return {
-  //       isPay: false
-  //     }
-  //   },
-  //   methods: {
-  //     payShow() {
-  //       this.isPay = true;
-  //     },
-  //     pasEnd(val) {
-  //       console.log(val); //得到密码 可能会进行一些加密动作
-  //       // 请求接口 验证密码是否正确
-  //     }
-  //   }
-  // })
+  Vue.use(MessageBox.default);
+  new Vue({
+    el: '#app',
+    mounted() { 
+    },
+    data() {
+      return {
+      }
+    },
+    methods: {
+      messageBox() {
+          this.$Message({
+              closable: false,
+              // type: 'info',
+              title: {
+                  content: '1233333333333333333333333'
+              },
+              message: {
+                  content: '<div>123</div>'
+              },
+              buttons: [{
+                  label: 'submit',
+                  cssClass: '',
+                  style: {},
+                  action: function(){
+
+                  }
+              }, {
+                  label: 'submit',
+                  cssClass: '',
+                  style: {},
+                  action: function(){
+
+                  }
+              }],
+              closeBtn: {
+
+              },
+              msgBody: {
+                  cssClass: 'test'
+              }
+          });
+      },
+      alert() {
+          this.$Message.alert('message!!!', function(){
+                  
+              });
+      },
+      confirm() {
+          this.$Message.confirm('message!!!!', function(result){
+              if(result) {
+                  alert('确定');
+              } else {
+                  alert('取消'); 
+              }
+          });
+      }
+    }
+  });
 </script>
 
 </html>

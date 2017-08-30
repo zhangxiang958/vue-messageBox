@@ -1,14 +1,8 @@
 <template>
   <div id="app">
-      1231231212
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'app',
-  mounted() {
-     this.$Dialog({
+      <button @click="messageBox">message</button>
+      <pre class="code">
+          this.$Message({
                 closable: false,
                 // type: 'info',
                 title: {
@@ -33,29 +27,141 @@ export default {
                     }
                 }],
                 closeBtn: {
-                    
+
                 },
-                messageBox: {
+                msgBody: {
+                    cssClass: 'test'
+                }
+            });
+      </pre>
+      <button @click="messageBox">alert</button>
+      <pre class="code">
+          this.$Message({
+                closable: false,
+                // type: 'info',
+                title: {
+                    content: '1233333333333333333333333'
+                },
+                message: {
+                    content: '<div>123</div>'
+                },
+                buttons: [{
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }, {
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }],
+                closeBtn: {
+
+                },
+                msgBody: {
                     // cssClass: 'test'
                 }
             });
-            this.$Dialog.alert('message!!!', function(){
-                
-            });
-            this.$Dialog.confirm('message!!!!', function(result){
-                if(result) {
-                    alert('确定');
-                } else {
-                    alert('取消'); 
+      </pre>
+      <button @click="messageBox">confirm</button>
+      <pre class="code">
+          this.$Message({
+                closable: false,
+                // type: 'info',
+                title: {
+                    content: '1233333333333333333333333'
+                },
+                message: {
+                    content: '<div>123</div>'
+                },
+                buttons: [{
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }, {
+                    label: 'submit',
+                    cssClass: '',
+                    style: {},
+                    action: function(){
+
+                    }
+                }],
+                closeBtn: {
+
+                },
+                msgBody: {
+                    // cssClass: 'test'
                 }
             });
+      </pre>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app',
+  mounted() { 
   },
   data() {
     return {
     }
   },
   methods: {
-    
+    messageBox() {
+        this.$Message({
+            closable: false,
+            // type: 'info',
+            title: {
+                content: '1233333333333333333333333'
+            },
+            message: {
+                content: '<div>123</div>'
+            },
+            buttons: [{
+                label: 'submit',
+                cssClass: '',
+                style: {},
+                action: function(){
+
+                }
+            }, {
+                label: 'submit',
+                cssClass: '',
+                style: {},
+                action: function(){
+
+                }
+            }],
+            closeBtn: {
+
+            },
+            msgBody: {
+                cssClass: 'test'
+            }
+        });
+    },
+    alert() {
+        this.$Message.alert('message!!!', function(){
+                
+            });
+    },
+    confirm() {
+        this.$Message.confirm('message!!!!', function(result){
+            if(result) {
+                alert('确定');
+            } else {
+                alert('取消'); 
+            }
+        });
+    }
   }
 }
 </script>
@@ -69,5 +175,9 @@ export default {
     height: 30px;
     background: #fff;
   }
+}
+.code {
+    background: #666;
+    color: #fff;
 }
 </style>

@@ -20,7 +20,7 @@
                     cssClass: '',
                     style: {}
                 },
-                messageBox: {
+                msgBody: {
                     cssClass: '',
                     style: {}
                 },
@@ -49,8 +49,8 @@
         <div class="msgBox" v-if="show"
             @touchmove="notAllowTouchMove($event)">
             <div class="message"
-                :class="messageBox.cssClass"
-                :style="messageBox.style"
+                :class="msgBody.cssClass"
+                :style="msgBody.style"
             >
                 <div class="title"
                     :cssClass="title.cssClass"
@@ -103,19 +103,13 @@
     }
     .closeBtn {
         position: absolute;
-        top: 25px;
+        top: 23px;
         right: 10px;
         transform: translateY(-50%);
-        cursor: pointer;
-        border-radius: 12px;
-        /* center text */
-        line-height: 20px;
         text-align: center;
-        height: 20px;
-        width: 20px;
         font-size: 18px;
-        padding: 1px;
         z-index: 999;
+        cursor: pointer;
         &:after {
             content: "\2A2F";
         }

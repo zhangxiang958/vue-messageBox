@@ -8,6 +8,7 @@ this project is base on ECMAScript 6, so maybe you need babel.
 Because my project need a modal which only show some simple text, and the native modal on mobile is ugly and is not a custom component.
 ## Live Demo
 
+https://zhangxiang958.github.io/vue-messageBox/
 ## Installation
 ```
 npm install --save vue-messageBox-addon

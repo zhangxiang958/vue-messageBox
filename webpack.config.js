@@ -2,8 +2,8 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  // entry: './src/main.js', // 项目入口
-  entry: './src/lib/index.js', // 注释掉原有的
+  entry: './src/main.js', // 项目入口
+  // entry: './src/lib/index.js', // 注释掉原有的
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -76,7 +76,7 @@ if (process.env.NODE_ENV === 'production') {
       minimize: true
     }),
     new webpack.BannerPlugin(`
-        vue-messageBox-freedom
+        vue-messageBox-addon
         developer: ShawnCheung shawncheung@gmail.com
         updated: ${new Date()}
         version: ${+ new Date()}

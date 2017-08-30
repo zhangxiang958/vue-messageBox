@@ -71,7 +71,7 @@
 
 <body>
  <div id="app">
-      <button @click="messageBox">message</button>
+      <!--<button @click="messageBox">message</button>
       <pre class="code">
           this.$Message({
                 closable: false,
@@ -172,72 +172,70 @@
                     // cssClass: 'test'
                 }
             });
-      </pre>
+      </pre>-->
   </div>
    <!--<script src="./node_modules/vue/dist/vue.js"></script> -->
-   <script src="https://unpkg.com/vue@2.4.2"></script>
-   <script src="/dist/vue-messageBox.js"></script>   
+   <script src="./dist/vue-messageBox.js"></script>   
 </body>
 <script>
-  Vue.use(MessageBox.default);
-  new Vue({
-    el: '#app',
-    mounted() { 
-    },
-    data() {
-      return {
-      }
-    },
-    methods: {
-      messageBox() {
-          this.$Message({
-              closable: false,
-              // type: 'info',
-              title: {
-                  content: '1233333333333333333333333'
-              },
-              message: {
-                  content: '<div>123</div>'
-              },
-              buttons: [{
-                  label: 'submit',
-                  cssClass: '',
-                  style: {},
-                  action: function(){
+//   new Vue({
+//     el: '#app',
+//     mounted() { 
+//     },
+//     data() {
+//       return {
+//       }
+//     },
+//     methods: {
+//       messageBox() {
+//           this.$Message({
+//               closable: false,
+//               // type: 'info',
+//               title: {
+//                   content: '1233333333333333333333333'
+//               },
+//               message: {
+//                   content: '<div>123</div>'
+//               },
+//               buttons: [{
+//                   label: 'submit',
+//                   cssClass: '',
+//                   style: {},
+//                   action: function(){
 
-                  }
-              }, {
-                  label: 'submit',
-                  cssClass: '',
-                  style: {},
-                  action: function(){
+//                   }
+//               }, {
+//                   label: 'submit',
+//                   cssClass: '',
+//                   style: {},
+//                   action: function(){
 
-                  }
-              }],
-              closeBtn: {
+//                   }
+//               }],
+//               closeBtn: {
 
-              },
-              msgBody: {
-                  cssClass: 'test'
-              }
-          });
-      },
-      alert() {
-          this.$Message.alert('message!!!', function(){
+//               },
+//               msgBody: {
+//                   cssClass: 'test'
+//               }
+//           });
+//       },
+//       alert() {
+//           this.$Message.alert('message!!!', function(){
                   
-              });
-      },
-      confirm() {
-          this.$Message.confirm('message!!!!', function(result){
-              if(result) {
-                  alert('确定');
-              } else {
-                  alert('取消'); 
-              }
-          });
-      }
-    }
-  });
+//               });
+//       },
+//       confirm() {
+//           this.$Message.confirm('message!!!!', function(result){
+//               if(result) {
+//                   alert('确定');
+//               } else {
+//                   alert('取消'); 
+//               }
+//           });
+//       }
+//     }
+//   });
 </script>
 
 </html>

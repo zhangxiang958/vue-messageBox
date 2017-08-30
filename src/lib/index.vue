@@ -46,18 +46,16 @@
 </script>
 <template>
     <transition name="modal">
-        <div class="msgBox" v-if="show" 
-            :class="{ 
-                info: type === 'info',
-                warning: type === 'warning',
-                danger: type === 'danger', 
-                showMsgBox: show  }" 
+        <div class="msgBox" v-if="show"
             @touchmove="notAllowTouchMove($event)">
             <div class="message"
                 :class="messageBox.cssClass"
                 :style="messageBox.style"
             >
-                <div class="title">
+                <div class="title"
+                    :cssClass="title.cssClass"
+                    :style="title.style"
+                >
                     {{ title.content }}
                     <div class="closeBtn" 
                          role="close-button" 
@@ -84,7 +82,7 @@
     </transition>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
     .msgBox {
         position: fixed;
         left: 0;
@@ -97,26 +95,30 @@
         z-index: 9999;
         -webkit-user-select: none;
     }
-    .msgBox.info .title {
-        background: rgb(32, 160, 255);
-    }
-    .msgBox.warning .title {
-        background: #f0ad4e;
-    }
-    .msgBox.danger .title {
-        background: #dd524d;
+    .title {
+        position: relative;
+        padding: 15px;
+        padding-bottom: 0;
+        background: #fff;
     }
     .closeBtn {
         position: absolute;
-        top: 50%;
-        right: 8px;
+        top: 25px;
+        right: 10px;
         transform: translateY(-50%);
-        max-width: 5%;
-        max-height: 25%;
-        min-width: 15px;
-        min-height: 15px;
-        background: url('data:img/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAYCAYAAAAPtVbGAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAESSURBVHjarNZNSgMxAIDR19QruOgJFP/AMzi68gSCBxQ8gDBad26kiroRr+BCELe2bmYghI5NZiYHyEtIvpBJXdcwxRIr440JJlVVLQMC3rHA9kjADG940QAr/OAYdyNAM8yxj+8YOWvkw4FQC+ziCectAp84wesAKAUqfMVIC1U9oU4gRfpCMbBIgXVIKZQCpynQheRCWcB/yCYoG9iEdEFHJQBsZdycFrptgOdmcVlAzk5i6LJ53wJ+cZEDlCAzXEXAFNe5HYUeoe2VBht6hPZRGmwoAOJDLnoZwoCSs6HQAdxndpBC83VQ6AB2CjqIoYN1UBgIZEFhBGAjFJpfRT0Q6IJuYmSJh4FACj028/obAFx3gkG2/PgIAAAAAElFTkSuQmCC') no-repeat;
-        background-size: 100%;
+        cursor: pointer;
+        border-radius: 12px;
+        /* center text */
+        line-height: 20px;
+        text-align: center;
+        height: 20px;
+        width: 20px;
+        font-size: 18px;
+        padding: 1px;
+        z-index: 999;
+        &:after {
+            content: "\2A2F";
+        }
     }
     .message {
         position: absolute;
@@ -125,18 +127,13 @@
         transform: translate(-50%, -50%);
         width: 75%;
         border-radius: 10px;
+        background: #fff;
         z-index: 9999;
         overflow: hidden;
-        transition: all .3s ease;
-    }
-    .title {
-        position: relative;
-        padding: 15px;
-        background: #fff;
     }
     .msg {
-        padding: 10px;
-        background: #fff;
+        position: relative;
+        padding: 30px 20px;
         overflow: hidden;
     }
     .msgFooter {
@@ -150,31 +147,31 @@
     }
     .footerBtn {
         display: inline-block;
+        position: relative;
         margin-right: 5px;
         margin-bottom: 0;
+        padding: 0 15px;
+        line-height: 1.15;
+        height: 28px;
+        line-height: 28px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        border-color: #d9d9d9;
+        background-color: #fff;
+        color: rgba(0, 0, 0, .65);
         font-weight: 500;
+        font-size: 12px;
         text-align: center;
         -ms-touch-action: manipulation;
         touch-action: manipulation;
         cursor: pointer;
-        border: 1px solid transparent;
         white-space: nowrap;
-        line-height: 1.15;
-        padding: 0 15px;
-        font-size: 12px;
-        border-radius: 4px;
-        height: 28px;
-        line-height: 28px;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
         -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
         transition: all .3s cubic-bezier(.645,.045,.355,1);
-        position: relative;
-        color: rgba(0, 0, 0, .65);
-        background-color: #fff;
-        border-color: #d9d9d9;
     }
     .mask {
         position: absolute;

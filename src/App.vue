@@ -1,9 +1,14 @@
-<script>
-    // import vueToast from './layer/vue-toast.js';
+<template>
+  <div id="app">
+      1231231212
+  </div>
+</template>
 
-    export default {
-        mounted() {
-            this.$Dialog({
+<script>
+export default {
+  name: 'app',
+  mounted() {
+     this.$Dialog({
                 closable: false,
                 // type: 'info',
                 title: {
@@ -28,7 +33,7 @@
                     }
                 }],
                 closeBtn: {
-
+                    
                 },
                 messageBox: {
                     // cssClass: 'test'
@@ -44,42 +49,25 @@
                     alert('取消'); 
                 }
             });
-        },
-        data() {
-            return {
-                
-            }
-        },
-        methods: {
-            toast() {
-                this.$Toast('数据请求出错, 请稍后重试!', {
-                    cssClass: '123123 234234',
-                    style: {
-                        background: 'red',
-                    }
-                });
-                // this.$refs.toast.showToast(new Date, {
-                //     theme: 'error',
-                //     timeLife: 3000,
-                //     closeBtn: true
-                // })
-            }
-        },
-        components: {
-            // vueToast
-        }
+  },
+  data() {
+    return {
     }
+  },
+  methods: {
+    
+  }
+}
 </script>
 
-<template>
-    <div class="app">
-        <button @click="toast">toast</button>   
-    </div>
-</template>
-
-<style>
-    .app {
-        margin: 0;
-    }
-
+<style lang="scss">
+.example {
+  text-align: center;
+  margin-bottom: 20px;
+  button {
+    border: 1px solid #ccc;
+    height: 30px;
+    background: #fff;
+  }
+}
 </style>

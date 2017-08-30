@@ -30,7 +30,9 @@ let globalOptions = {
 
 let instance;
 
-const Dialog = (config = {}) => {
+const Dialog = function(config = {}) {
+    let Tpl = this.extend(Template);
+    instance = new Tpl();
     config = {
         ...globalOptions,
         ...config
@@ -41,12 +43,11 @@ const Dialog = (config = {}) => {
         }
     }
     instance.$data.show = true;
-    // console.log('msg', instance.$data);
     document.body.style.overflow = 'hidden';
     document.body.appendChild(instance.$mount().$el);
 }
 
-const Alert = (message, callback) => {
+const Alert = function(message, callback){
     let alertConfig = {
         type: 'info',
         message: {
@@ -73,7 +74,8 @@ const Alert = (message, callback) => {
             }
         }
     };
-    Dialog({
+
+    Dialog.call(this, {
         ...globalOptions,
         ...alertConfig
     });
@@ -124,7 +126,7 @@ const Confirm = function(message, callback){
         }
     };
     
-    Dialog({
+    Dialog.call(this, {
         ...globalOptions,
         ...confirmConfig
     });
@@ -137,11 +139,9 @@ const Dismiss = () => {
 
 export default {
     install(Vue) {
-        let Tpl = Vue.extend(Template);
-        instance = new Tpl();
-        Vue.prototype.$Dialog = Dialog;
-        Vue.prototype.$Dialog.alert = Alert;
-        Vue.prototype.$Dialog.confirm = Confirm;
+        Vue.prototype.$Dialog = Dialog.bind(Vue);
+        Vue.prototype.$Dialog.alert = Alert.bind(Vue);
+        Vue.prototype.$Dialog.confirm = Confirm.bind(Vue);
         Vue.prototype.$Dialog['dismiss'] = Dismiss;
     }
 }

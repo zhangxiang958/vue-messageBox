@@ -34,7 +34,7 @@
                 }
             });
       </pre>
-      <button @click="messageBox">alert</button>
+      <button @click="alert">alert</button>
       <pre class="code">
           this.$Message({
                 closable: false,
@@ -68,7 +68,7 @@
                 }
             });
       </pre>
-      <button @click="messageBox">confirm</button>
+      <button @click="confirm">confirm</button>
       <pre class="code">
           this.$Message({
                 closable: false,
